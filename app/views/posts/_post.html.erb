@@ -1,0 +1,26 @@
+<div <%= "id=""post-#{post.id}"""%>>
+  <div class="font-bold text-xl">
+    <%= "#{post.title} (#{post.id})" %>
+    <%#= link_to simple_format("#{post.title} (#{post.id})"), post_path(post), class: "text-blue-600 visited:text-purple-600" %>
+  </div>
+  <div class="text-base">
+    <%= simple_format(post.body)  %>
+  </div>
+  <br/>
+  <div class="text-xs font-gray-400" >
+    Posted by <%= post.user.email %> about <%= time_ago_in_words(post.created_at) %> ago.
+    <% if post.created_at != post.updated_at %>
+      <br/>
+      It was updated about <%= time_ago_in_words(post.updated_at) %> ago.
+    <% end %>
+  </div>
+  <br/>
+  <div class="flex flex-row">
+    <%= button_to 'Show', post_path(post), method: :get, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" %>
+    <% if post.user.id == current_user&.id %>
+      <%= button_to 'Edit', edit_post_path(post), method: :get, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mx-3 rounded focus:outline-none focus:shadow-outline" %>
+      <%= button_to 'Delete', post_path(post), method: :delete, form: {data: {turbo_confirm: "Are you sure to delete post with id=#{post.id}"}}, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" %>
+    <% end %>
+  </div>
+  <br/>
+</div>
