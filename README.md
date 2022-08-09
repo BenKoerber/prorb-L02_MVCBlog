@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+L2 of Practical Ruby on Rails for Beginners
+https://school.mixandgo.com/courses/9
 
-Things you may want to cover:
 
-* Ruby version
+1. Setup and start
 
-* System dependencies
+```
+# Clone repo
+git clone git@github.com:BenKoerber/prorb-L02_MVCBlog.git
+cd prorb-L02_MVCBlog
 
-* Configuration
+# Set everything up (install gems, setup db)
+bin/setup
 
-* Database creation
+# Start server
+bin/dev
+```
 
-* Database initialization
+2. Visit Page
+http://localhost:3000
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
