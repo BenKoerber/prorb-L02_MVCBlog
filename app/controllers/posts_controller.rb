@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     if !@post.save
       flash[:alert] = "Could not save post, sorry!"
     else
-      flash[:notice] = "Successfully saved post."
+      flash[:success] = "Successfully saved post."
     end
     redirect_to dashboard_path
   end
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post has been sucessfully saved."
       redirect_to @post
     else
-      flash[:altert] = "Sorry, could not save post!"
+      flash[:alert] = "Sorry, could not save post!"
       render 'edit'                                     
     end
   end
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
       @post.destroy
       flash[:success] = "Post deleted."
     else
-      flash[:warn] = "Post could not be deleted."
+      flash[:alert] = "Post could not be deleted."
     end
 
     if request.referrer.nil? || request.referrer == posts_url

@@ -1,16 +1,24 @@
-<%= form_with model: @post, url: posts_path, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |form| %>
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
   <h2 class="mb-4 text-2xl font-black">
     Create post
   </h2>
-  <div class="grid grid-cols-3 gap-3">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    <div></div>
-    <%= form.label :body %>
-    <%= form.text_area :body, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    <div></div>
-    <div></div>
-    <%= form.submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-    <div></div>
-  </div>
-<% end %>
+  <% if logged_in? %>
+    <%= form_with model: @post, url: posts_path, local: true  do |form| %>
+      <div class="grid grid-cols-3 gap-3">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <div></div>
+        <%= form.label :body %>
+        <%= form.text_area :body, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <div></div>
+        <div></div>
+        <%= form.submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <div></div>
+      </div>
+    <% end %>
+  <% else %>
+      <div>
+        Please <%= link_to "log in", new_login_path, class: "text-blue-600" %> in order to create posts.
+      </div>
+  <% end %>
+</div>

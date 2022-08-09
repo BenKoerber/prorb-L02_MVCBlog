@@ -14,7 +14,7 @@ class LoginsController < ApplicationController
       log_in @user
       redirect_to session[:forwarding_url] || dashboard_path 
     else
-      flash[:alert] = "Email and/or password is wrong."
+      flash[:notice] = "Email and/or password is wrong."
 
       ## Will user redirect_to instead of render :new because render leads to an empty scope for the params email and password ... 
       ## meaning we will get name="email" and name="password" instead name="user[email]" and name="user[password]"

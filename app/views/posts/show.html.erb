@@ -21,7 +21,7 @@
     </div>
     <br/>
     <div class="flex flex-row">
-      <% if @post.user.id == current_user.id %>
+      <% if @post.user.id == current_user&.id %>
         <%= button_to 'Edit', edit_post_path(@post), method: :get, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" %>
         <%= button_to 'Delete', post_path(@post), method: :delete, form: {data: {turbo_confirm: "Are you sure to delete post with id=#{@post.id}"}}, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 mx-3 rounded focus:outline-none focus:shadow-outline" %>
       <% end %>

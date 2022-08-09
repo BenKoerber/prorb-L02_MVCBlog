@@ -1,0 +1,25 @@
+<% if flash.any? %>
+    <% flash.each do |message_type, message| %>
+      <% if message_type == "success" %>
+        <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3">
+          <%= content_tag(:p, message_type&.capitalize, class: "font-bold") %>
+          <%= content_tag(:p, message, class: "text-sm") %>
+        </div>
+      <% elsif message_type == "notice" %>
+        <div class="bg-yellow-100 border-t border-b border-yellow-500 text-yellow-700 px-4 py-3">
+          <%= content_tag(:p, message_type&.capitalize, class: "font-bold") %>
+          <%= content_tag(:p, message, class: "text-sm") %>
+        </div>
+      <% elsif message_type == "alert" %>
+        <div class="bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3">
+          <%= content_tag(:p, message_type&.capitalize, class: "font-bold") %>
+          <%= content_tag(:p, message, class: "text-sm") %>
+        </div>
+      <% else %>
+        <div class="bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3">
+          <%= content_tag(:p, message_type&.capitalize, class: "font-bold") %>
+          <%= content_tag(:p, message, class: "text-sm") %>
+        </div>
+      <% end %>
+    <% end %>
+<% end %>
