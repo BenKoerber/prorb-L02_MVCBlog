@@ -14,11 +14,18 @@ cd prorb-L02_MVCBlog
 # Set everything up (install gems, setup db)
 bin/setup
 
+# Optional: populate with sample data
+rails db:reset
+
 # Start server
 bin/dev
 ```
 
 2. Visit Page
 http://localhost:3000
+
+Login using:
+* email: user{1..10}@example.org
+* password: foobar{1..10}
 
 
