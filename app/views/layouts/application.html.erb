@@ -13,21 +13,34 @@
   <body>
     
     <% if flash.any? %>
-      <div class="relative px-4 py-3 leading-normal text-red-700 bg-red-100 rounded-lg" role="alert">
-        <%#
-        <span class="absolute inset-y-0 left-0 flex items-center ml-4">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
-        </span>
-        %>
         <% flash.each do |message_type, message| %>
+        <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+          <p class="font-bold">Informational message</p>
+          <p class="text-sm">Some additional text to explain said message.</p>
+        </div>
           <%= content_tag(:div, message, class: "ml-6") %>
         <% end %>
-      </div>
     <% end %>
+
+    <div class="p-10">
+
+      <h1 class="mb-4 text-4xl font-black">
+        <%= link_to "Welcome to the Posts App!", root_path %>
+        <div class="text-xs">
+          Powered by Rails <%= Rails.version %>
+        </div>
+        <% if logged_in? %>
+          <div class="text-xs">
+            <%= button_to 'Logout', login_path, method: :delete, form: {data: {turbo_confirm: "Are you sure?"}}, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" %>        
+          </div>
+        <% end %>
+      </h1>
+      
+      <%= yield %>
     
-    <%= yield %>
+    </div>
     
-    <%= debug(params) if Rails.env.development? %>
+    <%= render 'shared/debug_info' %>
   
   </body>
 </html>

@@ -67,3 +67,5 @@ group :development do
   # gem "spring"
 end
 
+# Create test and dummy data using faker gem
+gem 'faker',          '2.22.0'

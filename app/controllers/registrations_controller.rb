@@ -1,18 +1,24 @@
 class RegistrationsController < ApplicationController
   
   def new
-    user = User.find_by(id: session[:user_id])
-    redirect_to dashboards_path if user    
-    @user = User.new
+    if logged_in?
+      redirect_to dashboard_path
+    else
+      @user = User.new
+    end
   end
 
   def create
     @user = User.new(user_params)
     if @user.save 
-      redirect_to new_logins_path
+      redirect_to new_login_path
     else
-      flash[:alert] = "Could not create the user, sorry."
-      render :new, status: :unprocessable_entity
+      flash[:alert] = "Could not create the user, sorry. (#{@user.errors.full_messages})"
+      
+      ## Will user redirect_to instead of render :new because render leads to an empty scope for the params email and password ... 
+      ## meaning we will get name="email" and name="password" instead name="user[email]" and name="user[password]"
+      redirect_to new_registration_path
+      #render :new, status: :unprocessable_entity 
     end
   end
 
